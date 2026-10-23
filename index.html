@@ -1,0 +1,1113 @@
+
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Juntos Podemos Fazer a Diferença</title>
+
+    <style>
+        :root {
+            --soft-blush: #ffd9da;
+            --blush-rose: #ea638c;
+            --dark-raspberry: #89023e;
+            --jet-black: #30343f;
+            --carbon-black: #1b2021;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            background-color: #fffafa;
+            color: var(--carbon-black);
+            font-family: Arial, Helvetica, sans-serif;
+            line-height: 1.6;
+        }
+
+        /* CABEÇALHO */
+        .cabecalho {
+            width: 100%;
+            padding: 20px 7%;
+            background-color: var(--soft-blush);
+            border-bottom: 1px solid rgba(137, 2, 62, 0.1);
+        }
+
+        .marca {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            text-decoration: none;
+            color: var(--dark-raspberry);
+            font-size: 21px;
+            font-weight: bold;
+        }
+
+        .marca img {
+            width: 38px;
+            height: 38px;
+            object-fit: contain;
+        }
+
+        /* SEÇÃO PRINCIPAL */
+        .inicio {
+            width: 100%;
+            padding: 60px 7% 40px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+        }
+
+        .imagem-principal {
+            width: 100%;
+            max-width: 800px;
+            height: 350px;
+            overflow: hidden;
+            border-radius: 18px;
+            background-color: var(--soft-blush);
+            box-shadow: 0 8px 25px rgba(48, 52, 63, 0.1);
+        }
+
+        .imagem-principal img {
+            display: block;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .apresentacao {
+            width: 100%;
+            max-width: 800px;
+            margin-top: 28px;
+        }
+
+        .apresentacao h2 {
+            color: var(--dark-raspberry);
+            font-size: clamp(25px, 3vw, 36px);
+            line-height: 1.3;
+            margin-bottom: 14px;
+        }
+
+        .apresentacao h4 {
+            color: var(--jet-black);
+            font-size: 17px;
+            font-weight: normal;
+            margin-bottom: 25px;
+        }
+
+        /* BOTÃO PRINCIPAL */
+        .botao {
+            display: inline-block;
+            padding: 14px 30px;
+            border-radius: 30px;
+            background-color: var(--dark-raspberry);
+            color: #ffffff;
+            text-decoration: none;
+            font-size: 15px;
+            font-weight: bold;
+            transition: background-color 0.3s, transform 0.3s;
+        }
+
+        .botao:hover {
+            background-color: var(--blush-rose);
+            transform: translateY(-2px);
+        }
+
+        /* CARROSSEL */
+        .carrossel {
+            width: 100%;
+            padding: 35px 5% 40px;
+            background-color: #fffafa;
+            text-align: center;
+        }
+
+        .carrossel-cabecalho {
+            margin-bottom: 25px;
+        }
+
+        .carrossel-cabecalho h2 {
+            color: var(--dark-raspberry);
+            font-size: clamp(23px, 3vw, 30px);
+            line-height: 1.3;
+            margin-bottom: 8px;
+        }
+
+        .carrossel-cabecalho p {
+            color: var(--jet-black);
+            font-size: 16px;
+        }
+
+        .carrossel-container {
+            position: relative;
+            width: 90%;
+            max-width: 500px;
+            margin: 0 auto;
+        }
+
+        .carrossel-janela {
+            width: 100%;
+            overflow: hidden;
+            border-radius: 18px;
+            background-color: #fffafa;
+            box-shadow: 0 6px 20px rgba(48, 52, 63, 0.12);
+        }
+
+        .carrossel-faixa {
+            display: flex;
+            width: 100%;
+            transition: transform 0.6s ease-in-out;
+        }
+
+        .slide {
+            position: relative;
+            flex: 0 0 100%;
+            width: 100%;
+            min-width: 0;
+            height: 350px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background-color: #fffafa;
+            overflow: hidden;
+        }
+
+        .slide img {
+            display: block;
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+            object-position: center;
+        }
+
+        .legenda {
+            position: absolute;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            padding: 32px 15px 15px;
+            background: linear-gradient(
+                transparent,
+                rgba(27, 32, 33, 0.78)
+            );
+            color: #ffffff;
+            font-size: 16px;
+            font-weight: bold;
+            text-shadow: 0 1px 3px rgba(0, 0, 0, 0.5);
+            pointer-events: none;
+        }
+
+        /* INDICADORES DO CARROSSEL */
+        .carrossel-indicadores {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-top: 18px;
+        }
+
+        .indicador {
+            width: 10px;
+            height: 10px;
+            padding: 0;
+            border: none;
+            border-radius: 50%;
+            background-color: rgba(137, 2, 62, 0.3);
+            cursor: pointer;
+            transition: all 0.25s ease;
+        }
+
+        .indicador.ativo {
+            width: 25px;
+            border-radius: 10px;
+            background-color: var(--dark-raspberry);
+        }
+
+        /* CARTÕES */
+        .cartoes {
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px 5% 65px;
+            display: grid;
+            grid-template-columns: repeat(4, minmax(0, 1fr));
+            gap: 20px;
+            align-items: start;
+        }
+
+        .cartao {
+            min-width: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+            padding: 18px 12px;
+            border: 1px solid transparent;
+            border-radius: 18px;
+            transition: background-color 0.25s, border-color 0.25s, box-shadow 0.25s;
+        }
+
+        .cartao-botao {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            width: 100%;
+            border: 0;
+            background: transparent;
+            color: inherit;
+            font: inherit;
+            cursor: pointer;
+        }
+
+        .icone-quadrado {
+            width: 100px;
+            height: 100px;
+            flex-shrink: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background-color: var(--soft-blush);
+            border: 1px solid rgba(137, 2, 62, 0.12);
+            border-radius: 16px;
+            margin-bottom: 14px;
+            transition: background-color 0.3s, transform 0.3s;
+        }
+
+        .icone-quadrado img {
+            width: 43px;
+            height: 43px;
+            object-fit: contain;
+        }
+
+        .cartao h3,
+        .cartao-titulo {
+            color: var(--dark-raspberry);
+            font-size: 16px;
+            font-weight: 600;
+        }
+
+        .cartao-conteudo {
+            width: 100%;
+            max-height: 0;
+            opacity: 0;
+            overflow: hidden;
+            margin-top: 0;
+            text-align: left;
+            transition:
+                max-height 0.45s ease,
+                opacity 0.3s ease,
+                margin-top 0.3s ease;
+        }
+
+        .cartao-conteudo p {
+            margin-bottom: 10px;
+            font-size: 14px;
+        }
+
+        .cartao-conteudo h4 {
+            color: var(--dark-raspberry);
+            margin: 12px 0 5px;
+            font-size: 14px;
+        }
+
+        .cartao-conteudo ul {
+            padding-left: 19px;
+            margin-bottom: 10px;
+            font-size: 14px;
+        }
+
+        .cartao-conteudo .contato {
+            overflow-wrap: anywhere;
+            font-weight: bold;
+        }
+
+        .cartao.aberto {
+            background-color: #fff1f3;
+            border-color: rgba(137, 2, 62, 0.18);
+            box-shadow: 0 5px 18px rgba(137, 2, 62, 0.08);
+        }
+
+        .cartao.aberto .icone-quadrado {
+            background-color: #ffe9ed;
+            transform: translateY(-3px);
+        }
+
+        .cartao.aberto .cartao-conteudo {
+            max-height: 1500px;
+            opacity: 1;
+            margin-top: 14px;
+        }
+
+        .cartao-botao:focus-visible,
+        .indicador:focus-visible {
+            outline: 3px solid var(--blush-rose);
+            outline-offset: 4px;
+        }
+
+        /* EFEITO AO PASSAR O MOUSE */
+        @media (hover: hover) and (pointer: fine) {
+            .cartao:hover {
+                background-color: #fff1f3;
+                border-color: rgba(137, 2, 62, 0.18);
+                box-shadow: 0 5px 18px rgba(137, 2, 62, 0.08);
+            }
+
+            .cartao:hover .cartao-conteudo {
+                max-height: 1500px;
+                opacity: 1;
+                margin-top: 14px;
+            }
+
+            .cartao:hover .icone-quadrado {
+                background-color: #ffe9ed;
+                transform: translateY(-3px);
+            }
+        }
+
+        /* SEÇÃO DE CONTATO */
+        .contato-final {
+            position: relative;
+            width: 90%;
+            max-width: 1100px;
+            margin: 0 auto 55px;
+            padding: 38px 40px;
+            background: linear-gradient(
+                135deg,
+                var(--soft-blush),
+                #fff1f3,
+                #ffe5eb
+            );
+            border: 1px solid rgba(137, 2, 62, 0.15);
+            border-radius: 24px;
+            box-shadow: 0 8px 25px rgba(137, 2, 62, 0.10);
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 35px;
+            align-items: center;
+            overflow: hidden;
+        }
+
+        .contato-info {
+            border-right: 2px solid var(--blush-rose);
+            padding-right: 30px;
+        }
+
+        .contato-final h2 {
+            color: var(--dark-raspberry);
+            font-size: clamp(23px, 3vw, 30px);
+            line-height: 1.3;
+            margin-bottom: 22px;
+        }
+
+        .contato-pessoa {
+            display: flex;
+            align-items: center;
+            gap: 13px;
+            margin: 16px 0;
+            font-size: 16px;
+            color: var(--jet-black);
+        }
+
+        .contato-pessoa .simbolo {
+            width: 44px;
+            height: 44px;
+            flex-shrink: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background-color: var(--dark-raspberry);
+            color: white;
+            border-radius: 50%;
+            font-size: 23px;
+            transition: transform 0.3s, background-color 0.3s;
+        }
+
+        .contato-pessoa:hover .simbolo {
+            background-color: var(--blush-rose);
+            transform: scale(1.08);
+        }
+
+        .contato-pessoa p {
+            overflow-wrap: anywhere;
+        }
+
+        .contato-pessoa a {
+            color: var(--dark-raspberry);
+            font-weight: bold;
+            text-decoration: none;
+        }
+
+        .contato-pessoa a:hover {
+            color: var(--blush-rose);
+            text-decoration: underline;
+        }
+
+        .contato-mensagem {
+            text-align: center;
+        }
+
+        .contato-mensagem .coracao {
+            font-size: 42px;
+            color: var(--dark-raspberry);
+            line-height: 1.3;
+            margin-bottom: 10px;
+        }
+
+        .contato-mensagem p {
+            color: var(--jet-black);
+            font-size: 15px;
+            margin-bottom: 17px;
+        }
+
+        .contato-mensagem .frase-final {
+            color: var(--dark-raspberry);
+            font-size: 20px;
+            font-weight: bold;
+            line-height: 1.5;
+        }
+
+        .contato-mensagem .assinatura {
+            display: inline-block;
+            margin-top: 5px;
+            padding: 9px 18px;
+            background-color: var(--dark-raspberry);
+            color: white;
+            border-radius: 25px;
+            font-size: 13px;
+            font-weight: bold;
+        }
+
+        /* RODAPÉ */
+        .rodape {
+            padding: 20px 5%;
+            text-align: center;
+            color: var(--dark-raspberry);
+            background-color: var(--soft-blush);
+            font-size: 13px;
+        }
+
+        /* TABLETS */
+        @media (max-width: 900px) {
+            .cartoes {
+                grid-template-columns: repeat(2, minmax(0, 1fr));
+                gap: 12px;
+            }
+
+            .imagem-principal {
+                height: 280px;
+            }
+
+            .marca {
+                font-size: 18px;
+            }
+
+            .contato-final {
+                padding: 30px 25px;
+                gap: 25px;
+            }
+        }
+
+        /* CELULARES */
+        @media (max-width: 600px) {
+            .cabecalho {
+                padding: 18px 5%;
+            }
+
+            .marca {
+                font-size: 16px;
+                gap: 9px;
+            }
+
+            .marca img {
+                width: 32px;
+                height: 32px;
+            }
+
+            .inicio {
+                padding: 25px 5%;
+            }
+
+            .imagem-principal {
+                height: 210px;
+                border-radius: 13px;
+            }
+
+            .apresentacao {
+                margin-top: 24px;
+            }
+
+            .apresentacao h4 {
+                font-size: 15px;
+            }
+
+            .botao {
+                padding: 12px 22px;
+                font-size: 14px;
+            }
+
+            .carrossel {
+                padding: 28px 5% 32px;
+            }
+
+            .carrossel-cabecalho {
+                margin-bottom: 18px;
+            }
+
+            .carrossel-cabecalho p {
+                font-size: 14px;
+            }
+
+            .carrossel-container {
+                width: 95%;
+                max-width: 430px;
+            }
+
+            .slide {
+                height: 300px;
+            }
+
+            .legenda {
+                font-size: 14px;
+                padding: 28px 8px 12px;
+            }
+
+            .cartoes {
+                padding: 10px 4% 40px;
+                gap: 8px;
+            }
+
+            .cartao {
+                padding: 14px 8px;
+            }
+
+            .icone-quadrado {
+                width: 78px;
+                height: 78px;
+                border-radius: 14px;
+            }
+
+            .icone-quadrado img {
+                width: 35px;
+                height: 35px;
+            }
+
+            .cartao h3,
+            .cartao-titulo {
+                font-size: 14px;
+            }
+
+            .cartao-conteudo p,
+            .cartao-conteudo ul {
+                font-size: 13px;
+            }
+
+            .contato-final {
+                width: 92%;
+                grid-template-columns: 1fr;
+                padding: 28px 20px;
+                gap: 25px;
+                margin-bottom: 35px;
+                border-radius: 20px;
+            }
+
+            .contato-info {
+                border-right: none;
+                border-bottom: 2px solid var(--blush-rose);
+                padding-right: 0;
+                padding-bottom: 22px;
+            }
+
+            .contato-final h2 {
+                font-size: 24px;
+                text-align: center;
+            }
+
+            .contato-pessoa {
+                font-size: 14px;
+                gap: 10px;
+            }
+
+            .contato-pessoa .simbolo {
+                width: 38px;
+                height: 38px;
+                font-size: 20px;
+            }
+
+            .contato-mensagem .frase-final {
+                font-size: 18px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- CABEÇALHO -->
+    <header class="cabecalho">
+        <a href="#" class="marca">
+            <img
+                src="icones/coracao_mao.svg"
+                alt="Símbolo de solidariedade"
+            >
+            <span>Juntos podemos fazer a diferença</span>
+        </a>
+    </header>
+
+    <main>
+
+        <!-- APRESENTAÇÃO -->
+        <section class="inicio">
+            <div class="imagem-principal">
+                <img
+                    src="img/campanha.jpeg"
+                    alt="Imagem principal da campanha de Natal"
+                >
+            </div>
+
+            <div class="apresentacao">
+                <h2>Pequenos gestos, grandes transformações</h2>
+
+                <h4>
+                    Um projeto de solidariedade, sustentabilidade e esperança
+                    para transformar o Natal de famílias!
+                </h4>
+
+                <a href="#como-ajudar" class="botao">
+                    Faça parte dessa corrente de amor
+                </a>
+            </div>
+        </section>
+
+        <!-- CARROSSEL -->
+        <section class="carrossel" aria-label="Galeria de fotos da campanha">
+
+            <div class="carrossel-cabecalho">
+                <h2>Galeria da nossa campanha</h2>
+                <p>Confira alguns momentos especiais da nossa jornada.</p>
+            </div>
+
+            <div class="carrossel-container">
+                <div class="carrossel-janela">
+                    <div class="carrossel-faixa">
+
+                        <div class="slide">
+                            <img
+                                src="img/produção.jpeg"
+                                alt="Produção da campanha"
+                            >
+                          
+                        </div>
+
+                        <div class="slide">
+                            <img
+                                src="img/andamento.jpeg"
+                                alt="Campanha em andamento"
+                            >
+                           
+                        </div>
+
+                        <div class="slide">
+                            <img
+                                src="img/img circulo.jpeg"
+                                alt="Imagem da campanha"
+                            >
+                            
+                        </div>
+
+                        <div class="slide">
+                            <img
+                                src="img/produção2.jpeg"
+                                alt="Produção dos brinquedos"
+                            >
+                           
+                        </div>
+
+                        <div class="slide">
+                            <img
+                                src="img/foco.jpeg"
+                                alt="Detalhes da campanha"
+                            >
+                            
+                        </div>
+
+                        <div class="slide">
+                            <img
+                                src="img/sapo final.jpeg"
+                                alt="Brinquedo reciclável pronto"
+                            >
+                            
+                        </div>
+
+                        <div class="slide">
+                            <img
+                                src="img/joia.jpeg"
+                                alt="Detalhe do trabalho artesanal"
+                            >
+                           
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+
+            <div
+                class="carrossel-indicadores"
+                aria-label="Escolher foto"
+            ></div>
+
+        </section>
+
+        <!-- CARTÕES INFORMATIVOS -->
+        <section class="cartoes" aria-label="Conheça a campanha">
+
+            <!-- QUEM SOMOS -->
+            <article class="cartao">
+                <button
+                    class="cartao-botao"
+                    type="button"
+                    aria-expanded="false"
+                >
+                    <span class="icone-quadrado">
+                        <img src="icones/coracao.svg" alt="">
+                    </span>
+
+                    <span class="cartao-titulo">Quem somos</span>
+                </button>
+
+                <div class="cartao-conteudo">
+                    <p>
+                        Somos um projeto solidário desenvolvido pelos alunos
+                        da turma 2º8 da Escola Estadual Frei Levino, com o
+                        propósito de levar alegria, esperança e carinho a
+                        famílias em situação de vulnerabilidade social.
+                    </p>
+
+                    <p>
+                        Acreditamos que pequenas atitudes podem transformar
+                        realidades. Queremos despertar a empatia, incentivar
+                        a generosidade e unir nossa comunidade em uma corrente
+                        de solidariedade.
+                    </p>
+
+                    <h4>Nossa missão</h4>
+
+                    <p>
+                        Transformar solidariedade em ações concretas,
+                        promovendo a união, o respeito e o cuidado com o
+                        próximo.
+                    </p>
+                </div>
+            </article>
+
+            <!-- NATAL SOLIDÁRIO -->
+            <article class="cartao">
+                <button
+                    class="cartao-botao"
+                    type="button"
+                    aria-expanded="false"
+                >
+                    <span class="icone-quadrado">
+                        <img src="icones/presente.svg" alt="">
+                    </span>
+
+                    <span class="cartao-titulo">Natal solidário</span>
+                </button>
+
+                <div class="cartao-conteudo">
+                    <p>
+                        O Natal é tempo de compartilhar, acolher e renovar a
+                        esperança. Porém, muitas famílias enfrentam
+                        dificuldades nessa época do ano.
+                    </p>
+
+                    <p>
+                        Estamos mobilizando nossa comunidade para arrecadar
+                        alimentos não perecíveis e brinquedos, com o objetivo
+                        de montar cestas de Natal e proporcionar momentos de
+                        alegria às famílias em situação de vulnerabilidade
+                        social.
+                    </p>
+
+                    <p>
+                        Queremos que cada doação represente um gesto de
+                        carinho, respeito e solidariedade, levando esperança
+                        às famílias e sorrisos às crianças.
+                    </p>
+                </div>
+            </article>
+
+            <!-- BRINQUEDOS RECICLÁVEIS -->
+            <article class="cartao">
+                <button
+                    class="cartao-botao"
+                    type="button"
+                    aria-expanded="false"
+                >
+                    <span class="icone-quadrado">
+                        <img src="icones/reciclavel.svg" alt="">
+                    </span>
+
+                    <span class="cartao-titulo">
+                        Brinquedos recicláveis
+                    </span>
+                </button>
+
+                <div class="cartao-conteudo">
+                    <p>
+                        A solidariedade também pode caminhar ao lado da
+                        sustentabilidade!
+                    </p>
+
+                    <p>
+                        Produzimos brinquedos utilizando materiais recicláveis.
+                        Com criatividade e trabalho em equipe, transformamos
+                        materiais que poderiam ser descartados em oportunidades
+                        de diversão e aprendizado.
+                    </p>
+
+                    <h4>Nossos objetivos</h4>
+
+                    <ul>
+                        <li>Estimular a criatividade e a imaginação.</li>
+                        <li>Incentivar a reutilização de materiais.</li>
+                        <li>Promover a consciência ambiental.</li>
+                        <li>Produzir brinquedos que levem alegria às crianças.</li>
+                    </ul>
+
+                    <p>
+                        Transformar o mundo também começa com aquilo que
+                        fazemos com nossas próprias mãos!
+                    </p>
+                </div>
+            </article>
+
+            <!-- COMO AJUDAR -->
+            <article class="cartao" id="como-ajudar">
+                <button
+                    class="cartao-botao"
+                    type="button"
+                    aria-expanded="false"
+                >
+                    <span class="icone-quadrado">
+                        <img src="icones/feito_a_mao.svg" alt="">
+                    </span>
+
+                    <span class="cartao-titulo">Como ajudar</span>
+                </button>
+
+                <div class="cartao-conteudo">
+                    <p>
+                        Você também pode fazer parte dessa corrente de amor!
+                    </p>
+
+                    <ul>
+                        <li>
+                            <strong>Doe alimentos:</strong>
+                            alimentos não perecíveis para as cestas de Natal.
+                        </li>
+
+                        <li>
+                            <strong>Doe brinquedos:</strong>
+                            brinquedos em boas condições.
+                        </li>
+
+                        <li>
+                            <strong>Doe materiais recicláveis:</strong>
+                            para a confecção dos brinquedos.
+                        </li>
+
+                        <li>
+                            <strong>Divulgue a campanha:</strong>
+                            compartilhe com amigos e familiares.
+                        </li>
+
+                        <li>
+                            <strong>Incentive a solidariedade:</strong>
+                            convide outras pessoas a participar.
+                        </li>
+                    </ul>
+                </div>
+            </article>
+
+        </section>
+
+        <!-- CONTATO COM ESTILO -->
+        <section
+            class="contato-final"
+            aria-label="Entre em contato conosco"
+        >
+
+            <div class="contato-info">
+                <h2>Entre em contato conosco</h2>
+
+                <div class="contato-pessoa">
+                    <span class="simbolo" aria-hidden="true">♥</span>
+
+                    <p>
+                        <strong>Elisa:</strong>
+                        <a
+                            href="https://wa.me/5535991171075"
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            aria-label="Conversar com Elisa pelo WhatsApp"
+                        >
+                            (35) 99117-1075
+                        </a>
+                    </p>
+                </div>
+
+                <div class="contato-pessoa">
+                    <span class="simbolo" aria-hidden="true">♥</span>
+
+                    <p>
+                        <strong>Mayra:</strong>
+                        <a
+                            href="https://wa.me/5535991177399"
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            aria-label="Conversar com Mayra pelo WhatsApp"
+                        >
+                            (35) 99117-7399
+                        </a>
+                    </p>
+                </div>
+            </div>
+
+            <div class="contato-mensagem">
+                <div class="coracao" aria-hidden="true">♥</div>
+
+                <p>
+                    Projeto desenvolvido pela turma 2º8
+                    da Escola Estadual Frei Levino.
+                </p>
+
+                <p class="frase-final">
+                    Juntos podemos fazer a diferença e transformar o Natal
+                    de muitas famílias!
+                </p>
+
+                <span class="assinatura">
+                    Uma corrente de amor e solidariedade
+                </span>
+            </div>
+
+        </section>
+
+    </main>
+
+    <!-- RODAPÉ -->
+    <footer class="rodape">
+        <p>Juntos podemos fazer a diferença ♥</p>
+    </footer>
+
+    <!-- JAVASCRIPT -->
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+
+            /* CARROSSEL AUTOMÁTICO */
+            const faixa = document.querySelector(".carrossel-faixa");
+            const slides = document.querySelectorAll(".slide");
+            const indicadores = document.querySelector(
+                ".carrossel-indicadores"
+            );
+
+            if (faixa && slides.length > 0 && indicadores) {
+
+                let indiceAtual = 0;
+                let temporizador;
+
+                indicadores.innerHTML = "";
+
+                slides.forEach(function (slide, indice) {
+                    const bolinha = document.createElement("button");
+
+                    bolinha.type = "button";
+                    bolinha.classList.add("indicador");
+                    bolinha.setAttribute(
+                        "aria-label",
+                        "Ir para a foto " + (indice + 1)
+                    );
+
+                    bolinha.addEventListener("click", function () {
+                        mostrarSlide(indice);
+                        reiniciarTemporizador();
+                    });
+
+                    indicadores.appendChild(bolinha);
+                });
+
+                function mostrarSlide(indice) {
+                    indiceAtual = indice;
+
+                    faixa.style.transform =
+                        "translateX(-" + (indiceAtual * 100) + "%)";
+
+                    const bolinhas =
+                        indicadores.querySelectorAll(".indicador");
+
+                    bolinhas.forEach(function (bolinha, i) {
+                        bolinha.classList.toggle(
+                            "ativo",
+                            i === indiceAtual
+                        );
+                    });
+                }
+
+                function proximoSlide() {
+                    indiceAtual = (indiceAtual + 1) % slides.length;
+                    mostrarSlide(indiceAtual);
+                }
+
+                function reiniciarTemporizador() {
+                    clearInterval(temporizador);
+
+                    temporizador = setInterval(function () {
+                        proximoSlide();
+                    }, 5000);
+                }
+
+                mostrarSlide(0);
+                reiniciarTemporizador();
+            }
+
+            /* CARTÕES INTERATIVOS */
+            const cartoes = document.querySelectorAll(".cartao");
+
+            cartoes.forEach(function (cartao) {
+                const botao = cartao.querySelector(".cartao-botao");
+
+                botao.addEventListener("click", function () {
+                    const estavaAberto =
+                        cartao.classList.contains("aberto");
+
+                    cartoes.forEach(function (outroCartao) {
+                        outroCartao.classList.remove("aberto");
+
+                        const outroBotao =
+                            outroCartao.querySelector(".cartao-botao");
+
+                        outroBotao.setAttribute("aria-expanded", "false");
+                    });
+
+                    if (!estavaAberto) {
+                        cartao.classList.add("aberto");
+                        botao.setAttribute("aria-expanded", "true");
+                    }
+                });
+            });
+
+        });
+    </script>
+
+</body>
+</html>
+
